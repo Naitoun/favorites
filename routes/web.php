@@ -17,5 +17,9 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::view('add', 'add');
-Route::view('favlist', 'favlist');
+Route::get('/', 'PagesController@index');
+//Route::get('add', 'PagesController@add');
+//Route::get('favlist', 'PagesController@favlist');
+
+Route::resource('links', 'LinksController');
+
