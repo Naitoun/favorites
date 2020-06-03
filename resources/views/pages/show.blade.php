@@ -1,8 +1,6 @@
 @extends('layouts.default')
 @section('content')
-    <h1>This is a favorite</h1>
-    <em>{{ $link->title }}</em>
+    <h2>{{ $link->title }}</h2>
+    <em>{{ $link->category->name }}</em><br>
     <a href="{{$link->url}}">{{$link->url}}</a>
-
-
 @endsection

@@ -29,7 +29,7 @@ class LinksController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('pages.add', compact('categories'));
+        return view('pages.create', compact('categories'));
     }
 
     /**
@@ -47,7 +47,6 @@ class LinksController extends Controller
         ]);
 
 //         Create Fav
-        $link = new Link();
         Link::create([
             'title'       => $request->input('title'),
             'url'         => $request->input('url'),
@@ -77,7 +76,13 @@ class LinksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $link = Link::find($id);
+        $data = [
+            'link' => $link,
+            'categories' => $categories
+        ];
+        return view('pages.edit', compact('data'));
     }
 
     /**
@@ -89,7 +94,21 @@ class LinksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'url' => 'required',
+            'category' => 'required',
+        ]);
+
+//         Modify fav
+        $thatLink = Link::find($id);
+        $thatLink->update([
+            'title'       => $request->input('title'),
+            'url'         => $request->input('url'),
+            'category_id' => $request->input('category')
+        ]);
+
+        return redirect(route('links.index'))->with('success', 'Favorite updated');
     }
 
     /**
@@ -100,6 +119,10 @@ class LinksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // delete fav
+        $thatLink = Link::find($id);
+        $thatLink->delete();
+
+        return redirect(route('links.index'))->with('success', 'Favorite delete');
     }
 }

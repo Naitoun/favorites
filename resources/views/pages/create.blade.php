@@ -17,9 +17,6 @@
             <label for="inputCategory">Choose a category</label>
             <select name="category" id="" class="form-control">
                 <option value="">Category</option>
-
-{{--            TODO : Get categories from the category table trough the id --}}
-{{--                {{dd($categories)}}--}}
                 @forelse($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @empty
