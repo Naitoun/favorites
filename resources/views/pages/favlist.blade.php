@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 @section('content')
     <h1>My fav' list</h1>
     <p>Find all your favorites websites!</p>

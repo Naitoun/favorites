@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\User;
 use Illuminate\Http\Request;
 use App\Link;
 use Illuminate\Support\Facades\DB;
@@ -17,8 +18,10 @@ class LinksController extends Controller
     public function index()
     {
         $links = Link::orderBy('id', 'desc')->get();
-        // TODO : Get the name of categories
-        return view('pages.favlist', compact('links'));
+//        $user_id = auth()->user('id');
+//        $user = User::find($user_id);
+//        return view('home')->with('user', $user->links);
+        return view('pages.favlist')->with('links', $links);
     }
 
     /**
@@ -47,11 +50,22 @@ class LinksController extends Controller
         ]);
 
 //         Create Fav
-        Link::create([
-            'title'       => $request->input('title'),
-            'url'         => $request->input('url'),
-            'category_id' => $request->input('category')
-        ]);
+        // If no user is authentified, set the user id to 0
+        if(auth()->user() != null) {
+            Link::create([
+                'title'       => $request->input('title'),
+                'url'         => $request->input('url'),
+                'category_id' => $request->input('category'),
+                'user_id' => auth()->user()->id,
+            ]);
+        } else {
+            Link::create([
+                'title'       => $request->input('title'),
+                'url'         => $request->input('url'),
+                'category_id' => $request->input('category'),
+                'user_id' => 0,
+            ]);
+        }
 
         return redirect(route('links.index'))->with('success', 'Favorite create');
     }

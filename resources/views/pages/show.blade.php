@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 @section('content')
     <h2>{{ $link->title }}</h2>
     <em>{{ $link->category->name }}</em><br>

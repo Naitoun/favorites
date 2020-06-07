@@ -23,3 +23,7 @@ Route::get('/', 'PagesController@index');
 
 Route::resource('links', 'LinksController');
 
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+

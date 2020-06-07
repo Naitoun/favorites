@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Link;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // Getting the user id from the authentification system
+        $user_id = auth()->user('id');
+        // Creating a new User instance using $user_id
+        $user = User::find($user_id)->first();
+
+//        $links = Link::orderBy('id', 'desc')->get();
+        // Redirect to the home view with the links value
+        return view('home', [
+            'links' => $user->links,
+        ]);
     }
 }

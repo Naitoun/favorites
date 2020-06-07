@@ -1,4 +1,6 @@
-@extends('layouts.default')
+@extends('layouts.app')
+{{-- TODO : If no user is authentified -> redirect to the root page --}}
+
 @section('content')
     <h1>Add a favorite</h1>
     <p>Add your favorites, give them a title, an url, a category</p>
