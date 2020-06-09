@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\DB;
 
 class LinksController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // it is possible to add exception like : ('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

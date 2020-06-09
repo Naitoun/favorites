@@ -9,6 +9,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            @if(Auth::check())
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -21,6 +22,7 @@
                     <a class="nav-link active" href="{{route('links.create')}}">Add a fav</a>
                 </li>
             </ul>
+            @endif
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

@@ -36,7 +36,7 @@
 
                                 </li>
                             @empty
-                                <li>Pas de lien pour l'instant</li>
+                                <li>No favorites for the moment</li>
                             @endforelse
                         </ul>
                     </div>
